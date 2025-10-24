@@ -1,0 +1,68 @@
+# Dependencies
+# ----------------------------------------------------------------
+# Visual Studio packages directory
+**/packages/*
+# NuGet v3 packages directory
+**/[Nn]uget/*
+# NuGet v3 http-cache
+**/[Nn]uget/v3-cache/*
+# NuGet packages folder
+!**/packages.config
+
+# Build results
+# ----------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+# ----------------------------------------------------------------
+# Visual Studio 2017 cache/options directory
+.vs/
+# Visual Studio 2019 cache/options directory
+.vs/*
+! .vs/slnx.sqlite
+# Visual Studio temporary files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+# ----------------------------------------------------------------
+.idea/
+*.sln.iml
+
+# Other
+# ----------------------------------------------------------------
+# Publish folder
+[Pp]ublish/
+# Build results
+[Bb]uild/
+# App settings that might contain secrets
+appsettings.Development.json
+
+# Log files
+# ----------------------------------------------------------------
+*.log
+logs/
+
+# OS generated files
+# ----------------------------------------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Secrets
+# ----------------------------------------------------------------
+secrets.json
+appsettings.local.json
+publish.ps1

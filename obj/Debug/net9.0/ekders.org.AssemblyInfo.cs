@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ekders.org")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+567e1f4a74a0263ea7c2f178fa6f8bad3b562875")]
 [assembly: System.Reflection.AssemblyProductAttribute("ekders.org")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ekders.org")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
