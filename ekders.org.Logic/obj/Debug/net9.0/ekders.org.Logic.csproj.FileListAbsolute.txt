@@ -1,0 +1,10 @@
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\bin\Debug\net9.0\ekders.org.Logic.deps.json
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\bin\Debug\net9.0\ekders.org.Logic.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\bin\Debug\net9.0\ekders.org.Logic.pdb
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\ekders.org.Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\ekders.org.Logic.csproj.CoreCompileInputs.cache
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\ekders.org.Logic.sourcelink.json
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\ekders.org.Logic.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\refint\ekders.org.Logic.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\ekders.org.Logic.pdb
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Logic\obj\Debug\net9.0\ref\ekders.org.Logic.dll

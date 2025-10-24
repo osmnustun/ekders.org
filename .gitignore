@@ -11,8 +11,8 @@
 
 # Build results
 # ----------------------------------------------------------------
-[Bb]in/
-[Oo]bj/
+ekders.org/[Bb]in/
+ekders.org/[Oo]bj/
 
 # Visual Studio
 # ----------------------------------------------------------------
@@ -35,11 +35,11 @@
 # Other
 # ----------------------------------------------------------------
 # Publish folder
-[Pp]ublish/
+ekders.org/[Pp]ublish/
 # Build results
-[Bb]uild/
+ekders.org/[Bb]uild/
 # App settings that might contain secrets
-appsettings.Development.json
+ekders.org/appsettings.Development.json
 
 # Log files
 # ----------------------------------------------------------------

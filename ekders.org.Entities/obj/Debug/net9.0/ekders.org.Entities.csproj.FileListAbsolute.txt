@@ -1,0 +1,10 @@
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\bin\Debug\net9.0\ekders.org.Entities.deps.json
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\bin\Debug\net9.0\ekders.org.Entities.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\bin\Debug\net9.0\ekders.org.Entities.pdb
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\ekders.org.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\ekders.org.Entities.csproj.CoreCompileInputs.cache
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\ekders.org.Entities.sourcelink.json
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\ekders.org.Entities.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\refint\ekders.org.Entities.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\ekders.org.Entities.pdb
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.Entities\obj\Debug\net9.0\ref\ekders.org.Entities.dll
