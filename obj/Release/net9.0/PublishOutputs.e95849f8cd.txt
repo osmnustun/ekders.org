@@ -1,0 +1,7 @@
+C:\temp\ekders-deploy\ekders.org.exe
+C:\temp\ekders-deploy\appsettings.Development.json
+C:\temp\ekders-deploy\appsettings.json
+C:\temp\ekders-deploy\ekders.org.dll
+C:\temp\ekders-deploy\ekders.org.deps.json
+C:\temp\ekders-deploy\ekders.org.runtimeconfig.json
+C:\temp\ekders-deploy\ekders.org.pdb

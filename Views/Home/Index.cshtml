@@ -1,0 +1,72 @@
+﻿@model ekders.org.Models.Ekders
+@{
+    ViewData["Title"] = "Ekders Hesaplama";
+   
+}
+
+<h1>Ekders Hesaplama</h1>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Ders Saatleri</h4>
+            <hr />
+            <div class="form-group row">
+                @Html.LabelFor(m => m.NormalGunduz, "Normal Gündüz", new { @class = "col-sm-6 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.NormalGunduz, new { @class = "form-control", type = "number", value = Model.NormalGunduz })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.NormalGece, "Normal Gece", new { @class = "col-sm-6 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.NormalGece, new { @class = "form-control", type = "number", value = Model.NormalGece })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.YuzdeYirmibesGunduz, "%25 Fazla Gündüz", new { @class = "col-sm-6 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.YuzdeYirmibesGunduz, new { @class = "form-control", type = "number", value = Model.YuzdeYirmibesGunduz })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.YuzdeYirmibesGece, "%25 Fazla Gece", new { @class = "col-sm-6 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.YuzdeYirmibesGece, new { @class = "form-control", type = "number", value = Model.YuzdeYirmibesGece })
+                </div>
+            </div>
+          
+        </div>
+        <div class="col-md-6">
+            <h4>Vergi ve Kesintiler</h4>
+            <hr />
+            <div class="form-group row">
+                @Html.LabelFor(m => m.GelirVergisiOrani, "Gelir Vergisi Oranı (%)", new { @class = "col-sm-6 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.GelirVergisiOrani, new { @class = "form-control", type = "number", step="0.01", value = Model.GelirVergisiOrani })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.DamgaVergisiOrani, "Damga Vergisi Oranı (%)", new { @class = "col-sm-6 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.DamgaVergisiOrani, new { @class = "form-control", type = "number", step="0.00001", value = Model.DamgaVergisiOrani })
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Hesapla</button>
+            </div>
+
+            @if (Model.BrutUcret > 0)
+            {
+                <div class="mt-4">
+                    <h4>Sonuçlar</h4>
+                    <hr />
+                    <p><strong>Brüt Ücret:</strong> @Model.BrutUcret.ToString("C")</p>
+                    <p><strong>Net Ücret:</strong> @Model.NetUcret.ToString("C")</p>
+                </div>
+            }
+        </div>
+    </div>
+}
