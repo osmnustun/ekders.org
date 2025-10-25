@@ -8,3 +8,7 @@ C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\obj\Debug\net9.0\ekde
 C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\obj\Debug\net9.0\refint\ekders.org.DataAccess.dll
 C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\obj\Debug\net9.0\ekders.org.DataAccess.pdb
 C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\obj\Debug\net9.0\ref\ekders.org.DataAccess.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\bin\Debug\net9.0\ekders.org.Entities.dll
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\bin\Debug\net9.0\ekders.org.Entities.pdb
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\obj\Debug\net9.0\ekders.org.DataAccess.csproj.AssemblyReference.cache
+C:\Users\osman\Masaüstü\ekders.org\ekders.org.DataAccess\obj\Debug\net9.0\ekders.o.DF64650D.Up2Date

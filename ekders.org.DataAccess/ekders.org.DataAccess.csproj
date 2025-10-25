@@ -13,4 +13,8 @@
     <Folder Include="Concrete\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ekders.org.Entities\ekders.org.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

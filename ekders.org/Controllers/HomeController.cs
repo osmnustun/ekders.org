@@ -1,5 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using ekders.org.Entities.Models;
+using ekders.org.Entities.DbEntities;
+using System.Collections.Generic;
+using System;
+using ekders.org.Entities.Enums;
+using ekders.org.Logic.Abstract;
 using ekders.org.Models;
 
 namespace ekders.org.Controllers;
@@ -7,49 +13,39 @@ namespace ekders.org.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ICalculationService _calculationService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ICalculationService calculationService)
     {
         _logger = logger;
+        _calculationService = calculationService;
     }
 
     [HttpGet]
     public IActionResult Index()
     {
-        // Initialize with default values, maybe from a config file or database later
-        var model = new Ekders
-        {
-            GelirVergisiOrani = 0.15, // Default to 15%
-            DamgaVergisiOrani = 0.00759 // Default to 0.759%
+        var model = new TeacherProgramViewModel();
+        var days = new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
+        var lessonTypes = new[] {
+            ExtraLessonType.Gunduz, ExtraLessonType.Gece, ExtraLessonType.OzelEgitim, ExtraLessonType.Egzersiz,
+            ExtraLessonType.DykGunduz, ExtraLessonType.DykGece, ExtraLessonType.IyepGunduz, ExtraLessonType.IyepGece
         };
+
+        foreach (var day in days)
+        {
+            foreach (var type in lessonTypes)
+            {
+                model.Programs.Add(new TeacherProgram { DayOfWeek = day, ExtraLessonType = type });
+            }
+        }
         return View(model);
     }
 
     [HttpPost]
-    public IActionResult Index(Ekders model)
+    public IActionResult Index(TeacherProgramViewModel model)
     {
-        // Maaş Katsayısı (This should be configurable, using a recent value)
-        const double maasKatsayisi = 1.012556;
-
-        // Ek Ders Göstergeleri
-        const int gunduzGosterge = 140;
-        const int geceGosterge = 150;
-
-        // Toplam Gösterge Puanı
-        double toplamGosterge =
-            (model.NormalGunduz * gunduzGosterge) +
-            (model.NormalGece * geceGosterge) +
-            (model.YuzdeYirmibesGunduz * gunduzGosterge * 1.25) +
-            (model.YuzdeYirmibesGece * geceGosterge * 1.25);
-           
-
-        // Hesaplamalar
-        model.BrutUcret = toplamGosterge * maasKatsayisi;
-        double gelirVergisi = model.BrutUcret * model.GelirVergisiOrani/100;
-        double damgaVergisi = model.BrutUcret * model.DamgaVergisiOrani/10000;
-        model.NetUcret = model.BrutUcret - gelirVergisi - damgaVergisi;
-
-        // Pass the calculated model back to the view
+        var result = _calculationService.Calculate(model);
+        model.CalculationResult = result;
         return View(model);
     }
 

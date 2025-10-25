@@ -10,9 +10,12 @@
 
   <ItemGroup>
     <Folder Include="ComplexEntities\" />
-    <Folder Include="DbEntities\" />
     <Folder Include="DTO\" />
-    <Folder Include="Enums\" />
+  </ItemGroup>
+
+  <!-- Needed for SelectListItem and other ASP.NET Core types used in Entities Models -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>

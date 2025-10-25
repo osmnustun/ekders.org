@@ -7,14 +7,47 @@
   "targets": {
     ".NETCoreApp,Version=v9.0": {
       "ekders.org.Logic/1.0.0": {
+        "dependencies": {
+          "ekders.org.DataAccess": "1.0.0",
+          "ekders.org.Entities": "1.0.0"
+        },
         "runtime": {
           "ekders.org.Logic.dll": {}
+        }
+      },
+      "ekders.org.DataAccess/1.0.0": {
+        "dependencies": {
+          "ekders.org.Entities": "1.0.0"
+        },
+        "runtime": {
+          "ekders.org.DataAccess.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "ekders.org.Entities/1.0.0": {
+        "runtime": {
+          "ekders.org.Entities.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "ekders.org.Logic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ekders.org.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ekders.org.Entities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

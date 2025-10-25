@@ -1,7 +1,11 @@
+using ekders.org.Logic.Abstract;
+using ekders.org.Logic.Concrete;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICalculationService, CalculationService>();
 
 var app = builder.Build();
 

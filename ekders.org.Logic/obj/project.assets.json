@@ -1,11 +1,52 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "ekders.org.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "ekders.org.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ekders.org.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ekders.org.DataAccess.dll": {}
+        }
+      },
+      "ekders.org.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/ekders.org.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ekders.org.Entities.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ekders.org.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../ekders.org.DataAccess/ekders.org.DataAccess.csproj",
+      "msbuildProject": "../ekders.org.DataAccess/ekders.org.DataAccess.csproj"
+    },
+    "ekders.org.Entities/1.0.0": {
+      "type": "project",
+      "path": "../ekders.org.Entities/ekders.org.Entities.csproj",
+      "msbuildProject": "../ekders.org.Entities/ekders.org.Entities.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "ekders.org.DataAccess >= 1.0.0",
+      "ekders.org.Entities >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\osman\\.nuget\\packages\\": {},
@@ -38,7 +79,14 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\osman\\Masaüstü\\ekders.org\\ekders.org.DataAccess\\ekders.org.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\osman\\Masaüstü\\ekders.org\\ekders.org.DataAccess\\ekders.org.DataAccess.csproj"
+            },
+            "C:\\Users\\osman\\Masaüstü\\ekders.org\\ekders.org.Entities\\ekders.org.Entities.csproj": {
+              "projectPath": "C:\\Users\\osman\\Masaüstü\\ekders.org\\ekders.org.Entities\\ekders.org.Entities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

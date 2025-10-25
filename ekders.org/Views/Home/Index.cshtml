@@ -1,72 +1,233 @@
-﻿@model ekders.org.Models.Ekders
+﻿@model ekders.org.Entities.Models.TeacherProgramViewModel
 @{
-    ViewData["Title"] = "Ekders Hesaplama";
-   
+    ViewData["Title"] = "Ekders Puantaj Hazırlama Programı";
+    var daysOfWeek = new[] { "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar" };
 }
 
-<h1>Ekders Hesaplama</h1>
+<style>
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .form-check-label {
+        margin-left: 0.5rem;
+    }
+    .day-input {
+        text-align: center;
+    }
+    .vertical-header {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: nowrap;
+    }
+    /* Prevent wrapping and make headers fit without overflow */
+    .result-table .vertical-header {
+        font-size: clamp(10px, 0.9vw, 12px);
+        line-height: 1;
+        letter-spacing: 0.2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .result-table th.day-col { min-width: 22px; }
+    /* Full-bleed wrapper to ignore container max-width; keeps 5% side gutters */
+    .result-outer {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+    /* Result table should fit the screen without horizontal scrolling */
+    .result-table {
+        width: 100%;
+        table-layout: auto; /* dynamic column widths */
+        font-size: 0.72rem;
+    }
+    .result-table th, .result-table td {
+        padding: 0.25rem 0.3rem;
+        white-space: nowrap; /* do not wrap to next line */
+    }
+    .result-table th.lesson-type,
+    .result-table td.lesson-type {
+        width: 140px;
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .result-table th.total-col,
+    .result-table td.total-col {
+        width: 70px;
+        max-width: 70px;
+    }
+</style>
+
+<h1 class="display-4 text-center mb-4">@ViewData["Title"]</h1>
 
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Ders Saatleri</h4>
-            <hr />
-            <div class="form-group row">
-                @Html.LabelFor(m => m.NormalGunduz, "Normal Gündüz", new { @class = "col-sm-6 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(m => m.NormalGunduz, new { @class = "form-control", type = "number", value = Model.NormalGunduz })
-                </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(m => m.NormalGece, "Normal Gece", new { @class = "col-sm-6 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(m => m.NormalGece, new { @class = "form-control", type = "number", value = Model.NormalGece })
-                </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(m => m.YuzdeYirmibesGunduz, "%25 Fazla Gündüz", new { @class = "col-sm-6 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(m => m.YuzdeYirmibesGunduz, new { @class = "form-control", type = "number", value = Model.YuzdeYirmibesGunduz })
-                </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(m => m.YuzdeYirmibesGece, "%25 Fazla Gece", new { @class = "col-sm-6 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(m => m.YuzdeYirmibesGece, new { @class = "form-control", type = "number", value = Model.YuzdeYirmibesGece })
-                </div>
-            </div>
-          
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Ders Programı</h4>
         </div>
-        <div class="col-md-6">
-            <h4>Vergi ve Kesintiler</h4>
-            <hr />
-            <div class="form-group row">
-                @Html.LabelFor(m => m.GelirVergisiOrani, "Gelir Vergisi Oranı (%)", new { @class = "col-sm-6 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(m => m.GelirVergisiOrani, new { @class = "form-control", type = "number", step="0.01", value = Model.GelirVergisiOrani })
-                </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ders Programı</th>
+                            @foreach (var day in daysOfWeek)
+                            {
+                                <th>@day</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var lessonTypes = new[] { "Gündüz", "Gece", "Özel Eğitim", "Egzersiz", "Dyk Gündüz", "Dyk Gece", "İyep Gündüz", "İyep Gece" };
+                            int programIndex = 0;
+                        }
+                        @for (int typeIndex = 0; typeIndex < lessonTypes.Length; typeIndex++)
+                        {
+                            <tr>
+                                <td>@lessonTypes[typeIndex]</td>
+                                @for (int dayIndex = 0; dayIndex < 7; dayIndex++)
+                                {
+                                    programIndex = typeIndex + (dayIndex * lessonTypes.Length);
+                                    <td>
+                                        @Html.TextBoxFor(m => m.Programs[programIndex].Count, new { @class = "form-control day-input", data_day_index = dayIndex, type = "number", min = "0", Value = 0 })
+                                        @Html.HiddenFor(m => m.Programs[programIndex].DayOfWeek)
+                                        @Html.HiddenFor(m => m.Programs[programIndex].ExtraLessonType)
+                                    </td>
+                                }
+                            </tr>
+                        }
+                        <tr>
+                            <td><strong>Toplam</strong></td>
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                <td id="total-@i" class="font-weight-bold">0</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group row">
-                @Html.LabelFor(m => m.DamgaVergisiOrani, "Damga Vergisi Oranı (%)", new { @class = "col-sm-6 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(m => m.DamgaVergisiOrani, new { @class = "form-control", type = "number", step="0.00001", value = Model.DamgaVergisiOrani })
-                </div>
-            </div>
-
-            <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary">Hesapla</button>
-            </div>
-
-            @if (Model.BrutUcret > 0)
-            {
-                <div class="mt-4">
-                    <h4>Sonuçlar</h4>
-                    <hr />
-                    <p><strong>Brüt Ücret:</strong> @Model.BrutUcret.ToString("C")</p>
-                    <p><strong>Net Ücret:</strong> @Model.NetUcret.ToString("C")</p>
-                </div>
-            }
         </div>
     </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h4 class="card-title">Ek Bilgiler</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(m => m.IsClassTeacher, new { @class = "form-check-input" })
+                        @Html.LabelFor(m => m.IsClassTeacher, "Sınıf Öğretmeni mi?", new { @class = "form-check-label" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(m => m.IsClubTeacher, new { @class = "form-check-input" })
+                        @Html.LabelFor(m => m.IsClubTeacher, "Kulüp Görevi Var mı?", new { @class = "form-check-label" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.OnDutyDay, "Nöbet Günü", new { @class = "control-label" })
+                        @Html.DropDownListFor(m => m.OnDutyDay, Model.DaysOfWeek, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-4 text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Kaydet ve Hesapla</button>
+    </div>
+}
+
+@if (Model.CalculationResult != null)
+{
+    <div class="result-outer">
+    <div class="card mt-5">
+        <div class="card-header">
+            <h3 class="card-title text-center">@Model.CalculationResult.MonthName @Model.CalculationResult.Year Ayı Puantaj Cetveli</h3>
+        </div>
+        <div class="card-body">
+            <div>
+                <table class="table table-striped table-bordered result-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="lesson-type" style="min-width: 140px;">Ek Ders Türü</th>
+                            @foreach (var day in Model.CalculationResult.DailyDetails)
+                            {
+                                <th class="text-center vertical-header day-col @(day.DayName == "Paz" || day.DayName == "Cts" ? "bg-light" : "")" title="@($"{day.DayOfMonth} {day.DayName}")">
+                                    @day.DayOfMonth @day.DayName
+                                </th>
+                            }
+                            <th class="text-center table-primary total-col" style="min-width: 60px;">Aylık Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var typeName in Model.CalculationResult.LessonTypes)
+                        {
+                            if (Model.CalculationResult.MonthlyTotal.ContainsKey(typeName) && Model.CalculationResult.MonthlyTotal[typeName] > 0)
+                            {
+                                <tr>
+                                    <td class="lesson-type" title="@typeName">@typeName</td>
+                                    @foreach (var day in Model.CalculationResult.DailyDetails)
+                                    {
+                                        <td class="text-center">
+                                            @(day.Hours.ContainsKey(typeName) && day.Hours[typeName] > 0 ? day.Hours[typeName].ToString() : "-")
+                                        </td>
+                                    }
+                                    <td class="text-center table-primary total-col"><strong>@Model.CalculationResult.MonthlyTotal[typeName]</strong></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr class="table-success">
+                            <td><strong>TOPLAM</strong></td>
+                            @foreach (var day in Model.CalculationResult.DailyDetails)
+                            {
+                                <td class="text-center"><strong>@day.TotalHours</strong></td>
+                            }
+                            <td class="text-center"><strong>@Model.CalculationResult.GrandTotal</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+}
+
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.day-input');
+
+            function calculateTotals() {
+                for (let i = 0; i < 7; i++) {
+                    const dayInputs = document.querySelectorAll(`.day-input[data-day-index='${i}']`);
+                    let total = 0;
+                    dayInputs.forEach(input => {
+                        total += parseInt(input.value) || 0;
+                    });
+                    document.getElementById(`total-${i}`).textContent = total;
+                }
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('input', calculateTotals);
+            });
+
+            // Initial calculation on page load
+            calculateTotals();
+        });
+    </script>
 }
